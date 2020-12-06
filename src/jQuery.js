@@ -9,6 +9,13 @@ window.jQuery = function (selector) {
             // 我们调用是通过 api.addClass 的
             // 所以这个 this 就是 api
             return this;
+        },
+        find(selector) {
+            let array = [];
+            for (let i = 0; i < elements.length; i++) {
+                array = array.concat(Array.from(elements[i].querySelectorAll(selector)))
+            }
+            return array;
         }
     }
 }

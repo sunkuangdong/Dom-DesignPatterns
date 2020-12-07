@@ -7,7 +7,7 @@ window.jQuery = function (selectorOrArray) {
     }
     return {
         oldApi: selectorOrArray.oldApi,
-        indexValue: null,
+        // indexValue: null,
         addClass(className) {
             for (let i = 0; i < elements.length; i++) {
                 elements[i].classList.add(className)
@@ -69,10 +69,15 @@ window.jQuery = function (selectorOrArray) {
             let array = Array.from(elements[0].parentNode.children)
             for (let i = 0; i < array.length; i++) {
                 if (array[i] === elements[0]) {
-                    this.indexValue = i
-                    return this
+                    return i
                 }
             }
+        },
+        next() {
+            return elements[0].nextSibling
+        },
+        prev() {
+            return elements[0].previousSibling
         }
     }
 }

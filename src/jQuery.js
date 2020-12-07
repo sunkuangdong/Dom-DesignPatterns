@@ -6,6 +6,8 @@ window.jQuery = function (selectorOrArray) {
         elements = selectorOrArray
     }
     return {
+        oldApi: selectorOrArray.oldApi,
+        index: selectorOrArray.index,
         addClass(className) {
             for (let i = 0; i < elements.length; i++) {
                 elements[i].classList.add(className)
@@ -26,7 +28,51 @@ window.jQuery = function (selectorOrArray) {
             // 这个对象里面用的 elements 是你传递的 array
             // const newApi = jQuery(array);
             // return newApi;
+            array.oldApi = this
             return jQuery(array);
+        },
+        end() {
+            // 接收上一个 api
+            return this.oldApi;
+        },
+        each(fn) {
+            for (let i = 0; i < elements.length; i++) {
+                fn.call(null, elements[i], i)
+            }
+            return this;
+        },
+        parent() {
+            const array = []
+            this.each(node => {
+                if (array.indexOf(node.parentNode) === -1) {
+                    array.push(node.parentNode)
+                }
+            })
+            return jQuery(array)
+        },
+        print() {
+            return elements
+        },
+        children() {
+            const array = []
+            this.each(node => {
+                array.push(...node.children)
+            })
+            return jQuery(array)
+        },
+        siblings() {
+            let array = Array.from(elements[0].parentNode.children)
+                .filter(item => item !== elements[0])
+            return jQuery(array)
+        },
+        index() {
+            let array = Array.from(elements[0].parentNode.children)
+            for (let i = 0; i < array.length; i++) {
+                if (array[i] === elements[0]) {
+                    array.index = i
+                    return jQuery(array)
+                }
+            }
         }
     }
 }

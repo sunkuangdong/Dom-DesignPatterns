@@ -11,6 +11,8 @@ jQuery('#xxx').prev() 获取哥哥
 jQuery('#xxx').each(fn) 遍历并对每个元素执行fn
 ```
 
+```
 特别注意: 
     1. 有些api要返回上次的this, 如find的实现
     2. 有些api要返回新的的api引用, 如find的实现
+```

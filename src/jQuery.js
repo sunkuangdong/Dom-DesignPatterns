@@ -1,5 +1,10 @@
-window.jQuery = function (selector) {
-    const elements = document.querySelectorAll(selector)
+window.jQuery = function (selectorOrArray) {
+    let elements
+    if (typeof selectorOrArray === 'string') {
+        elements = document.querySelectorAll(selectorOrArray)
+    } else {
+        elements = selectorOrArray
+    }
     return {
         addClass(className) {
             for (let i = 0; i < elements.length; i++) {
@@ -15,7 +20,13 @@ window.jQuery = function (selector) {
             for (let i = 0; i < elements.length; i++) {
                 array = array.concat(Array.from(elements[i].querySelectorAll(selector)))
             }
-            return array;
+            // 引用的和this不一样
+            // 需要保存当前的引用并返回
+            // 重新调用jQuery 会返回一个新的对象
+            // 这个对象里面用的 elements 是你传递的 array
+            // const newApi = jQuery(array);
+            // return newApi;
+            return jQuery(array);
         }
     }
 }

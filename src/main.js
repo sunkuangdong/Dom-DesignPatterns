@@ -4,6 +4,5 @@
 //    .addClass.call(api,'green')      // 链式调用
 
 // find的实现
-const api = jQuery('.test1')
-api.find('.child')
-console.log(api.find('.child'))
+const api = jQuery('.test1').find('.child').addClass('red')
+console.log(api)

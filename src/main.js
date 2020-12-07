@@ -17,4 +17,4 @@
 // console.log(jQuery('.test1').siblings().print())
 // console.log(jQuery('.test').index())
 // console.log(jQuery('.test1').next())
-console.log(jQuery('.test1').prev())
+// console.log(jQuery('.test1').prev())

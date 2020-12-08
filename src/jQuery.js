@@ -19,8 +19,8 @@ window.$ = window.jQuery = function (selectorOrArray) {
 jQuery.prototype = {
     // indexValue: null,
     addClass(className) {
-        for (let i = 0; i < elements.length; i++) {
-            elements[i].classList.add(className)
+        for (let i = 0; i < this.elements.length; i++) {
+            this.elements[i].classList.add(className)
         }
         // 这个 this 是什么要看怎么调用的
         // 我们调用是通过 api.addClass 的
@@ -29,8 +29,8 @@ jQuery.prototype = {
     },
     find(selector) {
         let array = [];
-        for (let i = 0; i < elements.length; i++) {
-            array = array.concat(Array.from(elements[i].querySelectorAll(selector)))
+        for (let i = 0; i < this.elements.length; i++) {
+            array = array.concat(Array.from(this.elements[i].querySelectorAll(selector)))
         }
         // 引用的和this不一样
         // 需要保存当前的引用并返回
@@ -46,8 +46,8 @@ jQuery.prototype = {
         return this.oldApi;
     },
     each(fn) {
-        for (let i = 0; i < elements.length; i++) {
-            fn.call(null, elements[i], i)
+        for (let i = 0; i < this.elements.length; i++) {
+            fn.call(null, this.elements[i], i)
         }
         return this;
     },
@@ -61,7 +61,7 @@ jQuery.prototype = {
         return jQuery(array)
     },
     print() {
-        return elements
+        return this.elements
     },
     children() {
         const array = []
@@ -71,23 +71,23 @@ jQuery.prototype = {
         return jQuery(array)
     },
     siblings() {
-        let array = Array.from(elements[0].parentNode.children)
-            .filter(item => item !== elements[0])
+        let array = Array.from(this.elements[0].parentNode.children)
+            .filter(item => item !== this.elements[0])
         return jQuery(array)
     },
     index() {
-        let array = Array.from(elements[0].parentNode.children)
+        let array = Array.from(this.elements[0].parentNode.children)
         for (let i = 0; i < array.length; i++) {
-            if (array[i] === elements[0]) {
+            if (array[i] === this.elements[0]) {
                 return i
             }
         }
     },
     next() {
-        return elements[0].nextSibling
+        return this.elements[0].nextSibling
     },
     prev() {
-        return elements[0].previousSibling
+        return this.elements[0].previousSibling
     },
     constructor: jQuery
 }

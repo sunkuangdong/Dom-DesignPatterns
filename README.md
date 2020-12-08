@@ -1,4 +1,14 @@
 ### 这是一个关于jQuery设计模式的学习代码
+
+##### 下载
+```
+npm install -g parcel
+yarn global add parcel
+```
+##### 运行
+```
+parcel src\index.html
+```
 ```
 jQuery('xxx') 返回值并不是一个元素, 而是一个 api 对象
 jQuery('xxx').find('.red') 查找 #xxx 里的 .red 元素
